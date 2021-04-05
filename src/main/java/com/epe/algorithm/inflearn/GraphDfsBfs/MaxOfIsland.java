@@ -37,7 +37,8 @@ public class MaxOfIsland {
 		for(int i=0;i<grid.length;i++) {
 			for(int j=0;j<grid[i].length;j++) {
 				if(grid[i][j] == '1') {
-					max = Math.max(max, dfs(grid, i, j));
+					int area = dfs(grid, i, j, 0);
+					max = Math.max(max, area);
 				}
 			}
 		}
@@ -45,18 +46,21 @@ public class MaxOfIsland {
 		return max;
 	}
 
-	public int dfs(char[][] grid, int i, int j) {
+	public int dfs(char[][] grid, int i, int j, int area) {
 		
-		if(i < 0 || j < 0 || i >= grid.length || j >= grid[0].length || grid[i][j] != '1') return 0;
+		//1. 범위를 벗어나거나 육지가 아닌 경우
+		if(i < 0 || j < 0 || i >= grid.length || j >= grid[0].length || grid[i][j] != '1') 
+			return area;
 		
+		//2. 1인 육지가 들어오는 경우
 		grid[i][j] = 'X';
+		area++;
 		
-		int a = dfs(grid, i-1, j);
-		int b = dfs(grid, i+1, j);
-		int c = dfs(grid, i, j+1);
-		int d = dfs(grid, i, j-1);
+		for(int[] dir : dirs) {
+			area = dfs(grid, i+dir[0], j+dir[1], area);
+		}
 		
-		return a+b+c+d+1;
+		return area;
 	}
 	
 	public void print(char[][] grid) {
