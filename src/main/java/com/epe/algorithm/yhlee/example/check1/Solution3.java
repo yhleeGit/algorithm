@@ -1,4 +1,4 @@
-package com.epe.algorithm.programmers.t1;
+package com.epe.algorithm.yhlee.example.check1;
 
 import java.util.ArrayList;
 import java.util.Arrays;
