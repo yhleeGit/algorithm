@@ -25,7 +25,7 @@ public class Solution1 {
 	
 	public static void main(String[] args) {
 		Solution1 aab = new Solution1();
-		int[] a = {0,0,0};
+		int[] a = {13,765,45};
 		
 		Queue<Given> list = new LinkedList<>(); 
 		for(int i = 0; i<a.length; i++) {
